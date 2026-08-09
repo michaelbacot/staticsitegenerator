@@ -14,6 +14,6 @@ def extract_markdown_images(test: str) -> list[tuple[str, str]]:
     Extracts images from a markdown raw test string.
     Returns a list of tuples of ('alt text', 'url')
     """
-    pattern = r"\[([^\[\]]*)\]\(([^\(\)]*)\)"
+    pattern = r"!\[([^\[\]]*)\]\(([^\(\)]*)\)"
     matches = re.findall(pattern, test)
     return matches
