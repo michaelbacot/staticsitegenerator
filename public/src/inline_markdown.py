@@ -1,5 +1,18 @@
+import re
 from textnode import TextNode, TextType
-from extract_functions import extract_markdown_images, extract_markdown_links
+
+def text_to_textnodes(text: str) -> list[TextNode]:
+    """
+    Converts a raw text string into a list of TextNode objects.
+    """
+    new_nodes = []
+    initial_node = TextNode(text, TextType.TEXT)
+    new_nodes = split_node_delimeter([initial_node], "**", TextType.BOLD)
+    new_nodes = split_node_delimeter(new_nodes, "_", TextType.ITALIC)
+    new_nodes = split_node_delimeter(new_nodes, "`", TextType.CODE)
+    new_nodes = split_nodes_images(new_nodes)
+    new_nodes = split_nodes_links(new_nodes)
+    return new_nodes
 
 def split_node_delimeter(old_nodes: list[TextNode], delimeter: str, text_type: TextType) -> list[TextNode]:
     new_nodes = []
@@ -65,3 +78,21 @@ def split_nodes_links(old_nodes: list[TextNode]) -> list[TextNode]:
             new_nodes.append(TextNode(node.text, TextType.TEXT))
 
     return new_nodes
+
+def extract_markdown_links(text: str) -> list[tuple[str, str]]:
+    """
+    Extracts links from a markdown raw test string.
+    Returns a list of tuples of ('alt text', 'url')
+    """
+    pattern = r"(?<!!)\[([^\[\]]*)\]\(([^\(\)]*)\)"
+    matches = re.findall(pattern, text)
+    return matches
+
+def extract_markdown_images(test: str) -> list[tuple[str, str]]:
+    """
+    Extracts images from a markdown raw test string.
+    Returns a list of tuples of ('alt text', 'url')
+    """
+    pattern = r"!\[([^\[\]]*)\]\(([^\(\)]*)\)"
+    matches = re.findall(pattern, test)
+    return matches
