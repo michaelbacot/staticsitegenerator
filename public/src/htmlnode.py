@@ -1,5 +1,3 @@
-from typing import Dict, List, Optional
-
 class HTMLNode():
     def __init__(
         self, 
