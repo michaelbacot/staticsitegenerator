@@ -1,5 +1,5 @@
 from textnode import TextNode, TextType
-from splitnodes import split_node_delimeter, split_nodes_images, split_nodes_links
+from inline_markdown import split_node_delimeter, split_nodes_images, split_nodes_links
 
 def text_to_textnodes(text: str) -> list[TextNode]:
     """

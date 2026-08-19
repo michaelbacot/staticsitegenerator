@@ -1,5 +1,7 @@
 from enum import Enum
+
 from htmlnode import LeafNode
+
 
 class TextType(Enum):
     TEXT = "text"
@@ -45,4 +47,3 @@ def text_node_to_html(text_node: TextNode) -> LeafNode:
         return LeafNode("img", None, props={"src": text_node.url, "alt": text_node.text})
     else:
         raise ValueError(f"Unsupported TextType: {text_node.text_type}")
-

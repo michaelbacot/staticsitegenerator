@@ -1,5 +1,7 @@
 import re
+
 from textnode import TextNode, TextType
+
 
 def text_to_textnodes(text: str) -> list[TextNode]:
     """
@@ -24,7 +26,7 @@ def split_node_delimeter(old_nodes: list[TextNode], delimeter: str, text_type: T
         delimeter_count = node.text.count(delimeter)
         if delimeter_count % 2 != 0:
             raise Exception(f"Closing delimeter '{delimeter}' not found in node text: {node.text}")
-        
+
         split_text = node.text.split(delimeter)
         for i, text in enumerate(split_text):
             if text == "":

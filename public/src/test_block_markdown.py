@@ -1,5 +1,7 @@
 import unittest
-from block_markdown import markdown_to_blocks, block_to_block_type, BlockType
+
+from block_markdown import BlockType, block_to_block_type, markdown_to_blocks
+
 
 class TestMarkDownToBlocks(unittest.TestCase):
     def test_markdown_to_blocks(self):
@@ -21,7 +23,7 @@ This is the same paragraph on a new line
                 "- This is a list\n- with items",
             ],
         )
-        
+
     def test_markdown_to_blocks_newlines(self):
         md = """
 This is **bolded** paragraph

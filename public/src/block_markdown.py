@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class BlockType(Enum):
     PARAGRAPH = "paragraph"
     HEADING = "heading"
@@ -18,11 +19,11 @@ def markdown_to_blocks(markdown: str) -> list[str]:
     return final_blocks
 
 def block_to_block_type(block: str) -> BlockType:
-    if block.startswith("# , ## , ### , #### , ##### , ###### "):
+    if block.startswith(("# ", "## ", "### ", "#### ", "##### ", "###### ")):
         return BlockType.HEADING
     elif block.startswith(">"):
         return BlockType.QUOTE
-    elif block.startswith("- ") or block.startswith("* "):
+    elif block.startswith(("- ", "* ")):
         return BlockType.ULIST
     elif block[0].isdigit() and block[1:3] == ". ":
         return BlockType.OLIST

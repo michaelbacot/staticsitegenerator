@@ -1,7 +1,8 @@
-from splitnodes import split_node_delimeter, split_nodes_images, split_nodes_links
+import unittest
+
+from inline_markdown import split_node_delimeter, split_nodes_images, split_nodes_links
 from textnode import TextNode, TextType
 
-import unittest
 
 class TestSplitNodeDelimeter(unittest.TestCase):
     def test_split_node_delimeter(self):
